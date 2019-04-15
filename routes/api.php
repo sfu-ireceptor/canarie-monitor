@@ -2,4 +2,5 @@
 
 use Illuminate\Http\Request;
 
-Route::get('{page}', 'CanarieController@linkPage');
+Route::get('stats', 'CanarieController@stats');
+Route::get('{page}', 'CanarieController@page');
