@@ -2,6 +2,4 @@
 
 use Illuminate\Http\Request;
 
-Route::get('/test', function () {
-    return "hi";
-});
+Route::get('{page}', 'CanarieController@linkPage');
