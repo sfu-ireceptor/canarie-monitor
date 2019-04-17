@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'iReceptor Database Service'),
 
     /*
     |--------------------------------------------------------------------------
@@ -258,4 +258,21 @@ return [
 
     'service_urls' => config_array('APP_SERVICE_URL'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | App info
+    |--------------------------------------------------------------------------
+    |
+    | Displayed on /info 
+    |
+    */
+
+    'category' => env('APP_CATEGORY', 'Data Storage and Retrieval'),
+    'synopsis' => env('APP_SYNOPSIS', 'iReceptor Database Service'),
+    'version' => env('APP_VERSION', '2.0'),
+    'institution' => env('APP_INSTITUTION', 'IRMACS/Simon Fraser University'),
+    'release_time' => env('APP_RELEASE_TIME', '2015-07-01T00:00:00Z'),
+    'research_subject' => env('APP_RESEARCH_SUBJECT', 'Immunology'),
+    'support_email' => env('APP_SUPPORT_EMAIL', 'help@irmacs.sfu.ca'),
+    'tags' => env('APP_TAGS', 'immunology,iReceptor'),
 ];

@@ -12,6 +12,27 @@ use GuzzleHttp\Exception\TransferException;
 class CanarieController extends Controller
 {
 
+    public function info(Request $request, Response $response)
+    {
+        $t = [];
+
+        $t['name'] = config('app.name');
+        $t['category'] = config('app.category');
+        $t['synopsis'] = config('app.synopsis');
+        $t['version'] = config('app.version');
+        $t['institution'] = config('app.institution');
+        $t['release_time'] = config('app.release_time');
+        $t['research_subject'] = config('app.research_subject');
+        $t['support_email'] = config('app.support_email');
+        $t['tags'] = config('app.tags');
+
+        if ($request->wantsJson()) {
+            return response()->json($t);
+        } else {
+            return view('info', $t);
+        }
+    }
+
     public function page($page)
     {
         $url = 'http://ireceptor.irmacs.sfu.ca/platform/' . $page;
