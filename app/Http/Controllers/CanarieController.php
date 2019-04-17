@@ -33,24 +33,6 @@ class CanarieController extends Controller
         }
     }
 
-    public function page($page)
-    {
-        $url = 'http://ireceptor.irmacs.sfu.ca/platform/' . $page;
-
-        if ($page == 'factsheet') {
-            $url = 'http://www.canarie.ca/software/platforms/ireceptor/';
-        } elseif ($page == 'provenance' || $page == 'licence') {
-            $url = 'http://ireceptor.irmacs.sfu.ca/platform/doc';
-        }
-
-        $data = [];
-        $data['title'] = $page;
-        $data['page'] = $page;
-        $data['url'] = $url;
-
-        return view('link', $data);
-    }
-
     public function stats(Request $request, Response $response)
     {
         $resetDate = Carbon::createFromDate(2019,4,15);
@@ -95,5 +77,21 @@ class CanarieController extends Controller
 
             return view('stats', $t);
         }
+    }
+
+    public function page($page)
+    {
+        $url = config('app.' . $page);
+
+        if($url == '') {
+            abort(404);
+        }
+
+        $data = [];
+        $data['title'] = $page;
+        $data['page'] = $page;
+        $data['url'] = $url;
+
+        return view('link', $data);
     }
 }

@@ -273,6 +273,25 @@ return [
     'institution' => env('APP_INSTITUTION', 'IRMACS/Simon Fraser University'),
     'release_time' => env('APP_RELEASE_TIME', '2015-07-01T00:00:00Z'),
     'research_subject' => env('APP_RESEARCH_SUBJECT', 'Immunology'),
-    'support_email' => env('APP_SUPPORT_EMAIL', 'help@irmacs.sfu.ca'),
+    'support_email' => env('APP_SUPPORT_EMAIL', 'support@ireceptor.org'),
     'tags' => env('APP_TAGS', 'immunology,iReceptor'),
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | App links
+    |--------------------------------------------------------------------------
+    |
+    | Required by CANARIE 
+    |
+    */
+
+   'doc' => env('APP_LINK_DOC', 'http://ireceptor.org/platform/doc'),
+   'releasenotes' => env('APP_LINK_RELEASENOTES', 'http://ireceptor.org/platform/releasenotes'),
+   'support' => env('APP_LINK_SUPPORT', 'http://ireceptor.org/platform/support'),
+   'source' => env('APP_LINK_SOURCE', 'http://ireceptor.org/platform/source'),
+   'tryme' => env('APP_LINK_', 'http://ireceptor.org/platform/tryme'),
+   'licence' => env('APP_LINK_', 'http://ireceptor.org/platform/doc'),
+   'provenance' => env('APP_LINK_', 'http://ireceptor.org/platform/doc'),
+   'factsheet' => env('APP_LINK_', 'http://www.canarie.ca/software/platforms/ireceptor/'),
 ];
