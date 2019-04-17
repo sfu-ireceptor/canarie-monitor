@@ -45,23 +45,22 @@ class CanarieController extends Controller
             $defaults = [];
             $defaults['verify'] = false;    // accept self-signed SSL certificates
             $defaults['base_uri'] = $service_url;
-            $defaults['timeout'] = 2;
+            $defaults['timeout'] = 5 * 60;
             $client = new \GuzzleHttp\Client($defaults);
 
-            $sample_list = [];
             try {
-                $response = $client->request('POST', 'v2/samples');
+                $response = $client->request('POST', config('app.service_usage_url'));
+
+                if($response->getStatusCode() != 200) {
+                    abort(503);
+                }
+
                 $json = $response->getBody();
-                $sample_list = json_decode($json, true);
+                $l = json_decode($json, true);
+                $usageCount += count($l);
             } catch (TransferException $e) {
                 abort(503);
             }
-
-            if($response->getStatusCode() != 200) {
-                abort(503);
-            }
-
-            $usageCount += count($sample_list);
         }
 
         $t = [];
