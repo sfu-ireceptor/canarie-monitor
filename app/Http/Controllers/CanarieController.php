@@ -32,31 +32,34 @@ class CanarieController extends Controller
 
     public function stats(Request $request, Response $response)
     {
-        $service_url = "https://ipa4.ireceptor.org/";
+        $resetDate = Carbon::createFromDate(2019,4,15);
+        $resetDateIso8601 = $resetDate->toDateString() . 'T' . $resetDate->toTimeString() . 'Z';
 
-		$resetDate = Carbon::createFromDate(2019,4,15);
-		$resetDateIso8601 = $resetDate->toDateString() . 'T' . $resetDate->toTimeString() . 'Z';
+        $service_url_list = config('app.service_urls');
+        $usageCount = 0;
 
-        $defaults = [];
-        $defaults['verify'] = false;    // accept self-signed SSL certificates
-        $defaults['base_uri'] = $service_url;
-        $defaults['timeout'] = 2;
-        $client = new \GuzzleHttp\Client($defaults);
+        foreach ($service_url_list as $service_url) {
+            $defaults = [];
+            $defaults['verify'] = false;    // accept self-signed SSL certificates
+            $defaults['base_uri'] = $service_url;
+            $defaults['timeout'] = 2;
+            $client = new \GuzzleHttp\Client($defaults);
 
-        $sample_list = [];
-        try {
-            $response = $client->request('POST', 'v2/samples');
-            $json = $response->getBody();
-            $sample_list = json_decode($json, true);
-        } catch (TransferException $e) {
-            abort(503);
+            $sample_list = [];
+            try {
+                $response = $client->request('POST', 'v2/samples');
+                $json = $response->getBody();
+                $sample_list = json_decode($json, true);
+            } catch (TransferException $e) {
+                abort(503);
+            }
+
+            if($response->getStatusCode() != 200) {
+                abort(503);
+            }
+
+            $usageCount += count($sample_list);
         }
-
-        if($response->getStatusCode() != 200) {
-            abort(503);
-        }
-
-		$usageCount = count($sample_list);
 
         $t = [];
         $t['usageCount'] = $usageCount;

@@ -1,5 +1,20 @@
 <?php
 
+if (! function_exists('config_array')) {
+    function config_array($str)
+    {
+        $t = [];
+        for ($i=1; $i <=10 ; $i++) { 
+            $val = env($str . '_' . $i, '');
+            if($val != '') {
+                $t[] = $val;
+            }
+        }
+        return $t;
+    }
+}
+
+
 return [
 
     /*
@@ -227,5 +242,20 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Service URLs
+    |--------------------------------------------------------------------------
+    |
+    | The services which are going to be monitored. They are to be defined 
+    | in .env like:
+    | 
+    | APP_SERVICE_URL_1=https://ipa1.ireceptor.org/
+    | APP_SERVICE_URL_2=https://ipa2.ireceptor.org/
+    |
+    */
+
+    'service_urls' => config_array('APP_SERVICE_URL'),
 
 ];
