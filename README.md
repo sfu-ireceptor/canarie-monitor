@@ -14,7 +14,9 @@ Then download and launch the container:
 sudo docker run -p 80:80 --env-file services.txt --rm ireceptor/canarie-monitor
 ```
 
-To check it's working, go to <http://localhost/service/stats> or execute:
+## Check it's working
+
+Go to <http://localhost/service/stats> or execute:
 ```
 curl http://localhost/service/stats
 ```
