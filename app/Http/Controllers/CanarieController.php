@@ -51,15 +51,19 @@ class CanarieController extends Controller
             try {
                 $response = $client->request('POST', config('app.service_usage_url'));
 
-                if($response->getStatusCode() != 200) {
-                    abort(503);
+                $status_code = $response->getStatusCode();
+                if($status_code != 200) {
+                    $reason = $response->getReasonPhrase();
+                    Log::error('Unsuccessful HTTP response from ' . $service_url . config('app.service_usage_url').  ': ' . $status_code . ': ' . $reason);
+                    abort(503, 'Request to ' . $service_url . config('app.service_usage_url') . ' failed.');
                 }
 
                 $json = $response->getBody();
                 $l = json_decode($json, true);
                 $usageCount += count($l);
             } catch (TransferException $e) {
-                abort(503);
+                Log::error('Unsuccessful request to ' . $service_url . config('app.service_usage_url'));
+                abort(503, 'Request to ' . $service_url . config('app.service_usage_url') . ' failed.');
             }
         }
 
