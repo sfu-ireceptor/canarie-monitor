@@ -7,7 +7,7 @@ APP_SERVICE_URL_1=https://ipa1.ireceptor.org/
 APP_SERVICE_URL_2=https://ipa2.ireceptor.org/
 ```
 
-It can contain up to 10 services. Just make sure to increment the number in the variable name (`APP_SERVICE_URL_3`, `APP_SERVICE_URL_3`, etc).
+It can contain up to 10 services. Just make sure to increment the number in the variable name (`APP_SERVICE_URL_3`, `APP_SERVICE_URL_4`, etc).
 
 Then download/launch the container:
 ```
