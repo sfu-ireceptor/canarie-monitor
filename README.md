@@ -9,7 +9,7 @@ APP_SERVICE_URL_2=https://ipa2.ireceptor.org/
 
 It can contain up to 10 services. Just make sure to increment the number in the variable name (`APP_SERVICE_URL_3`, `APP_SERVICE_URL_4`, etc).
 
-Then download/launch the container:
+Then download and launch the container:
 ```
 sudo docker run -p 80:80 --env-file services.txt --rm ireceptor/canarie-monitor
 ```
