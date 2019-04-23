@@ -7,6 +7,11 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
+2. Download the Docker image:
+```
+sudo docker pull ireceptor/canarie-monitor
+```
+
 2. Create a file `services.txt` with the list of iReceptor services to monitor, for example:
 ```
 APP_SERVICE_URL_1=https://ipa1.ireceptor.org/
