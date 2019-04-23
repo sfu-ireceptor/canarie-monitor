@@ -1,15 +1,16 @@
 # iReceptor CANARIE monitor
 
 ## Installation
-On a VM with [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/), create a file containing the list of the iReceptor services to monitor. Ex: `services.txt`:
+1. Install [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+2. Create a file `services.txt` with the list of iReceptor services to monitor, for example:
 ```
 APP_SERVICE_URL_1=https://ipa1.ireceptor.org/
 APP_SERVICE_URL_2=https://ipa2.ireceptor.org/
 ```
 
-It can contain up to 10 services. Just make sure to increment the number in the variable name (`APP_SERVICE_URL_3`, `APP_SERVICE_URL_4`, etc).
+`services.txt` can contain up to 10 services. Make sure to increment the number in the variable name (`APP_SERVICE_URL_3`, `APP_SERVICE_URL_4`, etc).
 
-Then download and launch the container:
+4. Download and launch the Docker container:
 ```
 sudo docker run -p 80:80 --env-file services.txt --rm ireceptor/canarie-monitor
 ```
