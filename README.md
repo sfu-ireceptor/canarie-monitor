@@ -22,7 +22,7 @@ sudo curl -o /etc/systemd/system/canarie-monitor.service https://raw.githubuserc
 
 In the system service (`/etc/systemd/system/canarie-monitor.service`), adjust the path to `services.txt.` if necessary. By default, it's `/home/ubuntu/services.txt`.
 
-4. Enable and start the system service
+4. Enable and start the system service. Note: this will take a while because it will download the Docker image from Docker Hub.
 ```
 sudo systemctl enable /etc/systemd/system/canarie-monitor.service
 sudo systemctl start canarie-monitor.service
