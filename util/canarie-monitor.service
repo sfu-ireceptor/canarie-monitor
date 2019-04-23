@@ -1,0 +1,14 @@
+[Unit]
+Description=CANARIE monitor for iReceptor services
+After=docker.service
+Requires=docker.service
+
+[Service]
+Restart=always
+ExecStartPre=/bin/bash -c '/usr/bin/docker rm -f canarie-monitor || /bin/true'
+ExecStartPre=/usr/bin/docker pull ireceptor/canarie-monitor
+ExecStart=/usr/bin/docker run --name canarie-monitor -p 80:80 --env-file /home/ubuntu/services.txt ireceptor/canarie-monitor
+ExecStop=/usr/bin/docker rm -f canarie-monitor
+
+[Install]
+WantedBy=multi-user.target
