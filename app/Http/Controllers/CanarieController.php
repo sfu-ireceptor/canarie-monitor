@@ -27,7 +27,21 @@ class CanarieController extends Controller
         $t['tags'] = config('app.tags');
 
         if ($request->wantsJson()) {
-            return response()->json($t);
+            // use required JSON field names
+            $t2 = $t;
+
+            $t2['releaseTime'] = $t['release_time'];
+            unset($t2['release_time']);
+
+            $t2['researchSubject'] = $t['research_subject'];
+            unset($t2['research_subject']);
+
+            $t2['supportEmail'] = $t['support_email'];
+            unset($t2['support_email']);
+
+            $t2['tags'] = ["immunology","iReceptor"];
+
+            return response()->json($t2);
         } else {
             return view('info', $t);
         }
