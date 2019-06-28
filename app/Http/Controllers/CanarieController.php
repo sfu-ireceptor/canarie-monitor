@@ -104,11 +104,6 @@ class CanarieController extends Controller
             abort(404);
         }
 
-        $data = [];
-        $data['title'] = $page;
-        $data['page'] = $page;
-        $data['url'] = $url;
-
-        return view('link', $data);
+        return redirect($url);
     }
 }
