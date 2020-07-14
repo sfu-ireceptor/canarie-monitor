@@ -60,6 +60,7 @@ class CanarieController extends Controller
             $defaults['verify'] = false;    // accept self-signed SSL certificates
             $defaults['base_uri'] = $service_url;
             $defaults['timeout'] = 5 * 60;
+            $defaults['body'] = '{}';
             $client = new \GuzzleHttp\Client($defaults);
 
             try {
@@ -74,7 +75,7 @@ class CanarieController extends Controller
 
                 $json = $response->getBody();
                 $l = json_decode($json, true);
-                $usageCount += count($l);
+                $usageCount += count($l['Repertoire']);
             } catch (TransferException $e) {
                 Log::error('Unsuccessful request to ' . $service_url . config('app.service_usage_url'));
                 abort(503, 'Request to ' . $service_url . config('app.service_usage_url') . ' failed.');

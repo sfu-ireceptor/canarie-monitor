@@ -257,7 +257,7 @@ return [
     */
 
     'service_urls' => config_array('APP_SERVICE_URL'),
-    'service_usage_url' => env('APP_SERVICE_USAGE_URL', 'v2/samples'),
+    'service_usage_url' => env('APP_SERVICE_USAGE_URL', 'airr/v1/repertoire'),
 
     /*
     |--------------------------------------------------------------------------
