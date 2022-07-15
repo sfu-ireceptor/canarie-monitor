@@ -3,6 +3,7 @@ FROM php:7.3.33-apache
 # install zip, composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN apt-get update && \
+	apt-get install apache2 && \
 	apt-get install -y zip && \
 	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
